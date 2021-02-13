@@ -6,7 +6,7 @@
 #define BYTES 0x400
 
 int main(int argc, char **argv)
-{	
+{
 	int bytes_read;
 	char buff[BYTES];
 

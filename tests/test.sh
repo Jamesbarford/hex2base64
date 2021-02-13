@@ -8,7 +8,6 @@ EXPECT1='SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t'
 EXPECT2='dw=='
 EXPECT3='d5Y='
 
-
 TEST1=$(./hex2base64 $CASE1)
 if [[ $TEST1 == $EXPECT1 ]]; then
 	echo test 1 passed

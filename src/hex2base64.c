@@ -8,7 +8,7 @@ static void print_base64(uint32_t hex, uint8_t padding);
 static const char *base64chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 void to_base64(char *hexstr)
-{	
+{
 	char c;
 	uint64_t len = 0;
 	uint32_t hex = 0;
