@@ -1,0 +1,35 @@
+# hex2base64
+
+Converts a hex string to base64
+
+## Usage
+
+```
+./hex2base64 <hex_string>
+```
+
+prints to stdout
+
+### example
+
+```
+./hex2base64 EC851A69B8ACD843164E10CFF70CF9E86DC2FEE3CF6F374B43C854E3342A2F1AC3E30C741CC41E679DF6D07CE6FA3A66083EC9B8C8BF3AF05D8BDBB0AA6CB3EF8C5BAA2A5E531BA9E28592F99E0FE4F95169A6C63F635D0197E325C5EC76219B907E4EBDCD401FB1986E4E3CA661FF73E7E2B8FD9988E753B7042B2BBCA76679
+
+
+// out puts
+
+7IUaabis2EMWThDP9wz56G3C/uPPbzdLQ8hU4zQqLxrD4wx0HMQeZ5320Hzm+jpmCD7JuMi/OvBdi9uwqmyz74xbqipeUxup4oWS+Z4P5PlRaabGP2NdAZfjJcXsdiGbkH5Ovc1AH7GYbk48pmH/c+fiuP2ZiOdTtwQrK7ynZnk=
+```
+
+## compilation:
+
+```
+make clean
+make init
+```
+
+## tests
+
+```
+./tests/test.sh
+```
