@@ -1,4 +1,4 @@
-#/bin/bash
+#!/usr/bin/env bash
 
 CASE1='49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d'
 CASE2='77'
@@ -8,7 +8,7 @@ EXPECT1='SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t'
 EXPECT2='dw=='
 EXPECT3='d5Y='
 
-TEST1=$(./hex2base64 $CASE1)
+TEST1=$(./hextobase64 $CASE1)
 if [[ $TEST1 == $EXPECT1 ]]; then
 	echo test 1 passed
 else
@@ -16,7 +16,7 @@ else
 	exit 1
 fi
 
-TEST2=$(./hex2base64 $CASE2)
+TEST2=$(./hextobase64 $CASE2)
 if [[ $TEST2 == $EXPECT2 ]]; then
 	echo test 2 passed
 else
@@ -24,7 +24,7 @@ else
 	exit 1
 fi
 
-TEST3=$(./hex2base64 $CASE3)
+TEST3=$(./hextobase64 $CASE3)
 if [[ $TEST3 == $EXPECT3 ]]; then
 	echo test 3 passed
 else

@@ -1,29 +1,11 @@
-OUT_DIR	= output
-SRC = ./
-LINK_TARGET = hex2base64
-SRC_FILES = $(shell find $(SRC) -name '*.c')
-OBJS = $(patsubst $(SRC)/%.c, $(OUT_DIR)/%.o, $(SRC_FILES))
-REBUILDABLES = $(OBJS) $(LINK_TARGET)
-CC_FLAGS = -std=gnu17 -Wall -Werror -Wextra -Wpedantic -Wno-shadow -g -O0
-CC = gcc
-OUTPUT_FOLDERS = $(addprefix $(OUT_DIR)/, $(notdir $(patsubst $(SRC), , $(shell find $(SRC) -maxdepth 5 -type d))))
+TARGET := hextobase64
+CFLAGS := -Wall -Werror -Wextra -O2
+CC     := cc
 
-all: $(LINK_TARGET)
-	@echo "compilation success ✅"
+$(TARGET): ./hextobase64.c
+	$(CC) $(CFLAGS) -o $@ $^
 
-$(LINK_TARGET): $(OBJS)
-	$(CC) $(CC_FLAGS) -o $@ $^
-
-$(OUT_DIR)/%.o: ./%.c
-	$(CC) $(CC_FLAGS) -o $@ -c $<
-
-$(OUT_DIR)/%.o: $(SRC)/%.c
-	$(CC) $(CC_FLAGS) -o $@ -c $<
+all: $(TARGET)
 
 clean:
-	rm -rf $(OUT_DIR)/*
-	@echo "clean done ✨"
-
-init:
-	mkdir -p $(OUT_DIR) $(OUTPUT_FOLDERS)
-	@$(MAKE)
+	rm $(TARGET)
