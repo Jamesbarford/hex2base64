@@ -6,6 +6,10 @@ Converts a hex string to base64
 
 ```
 ./hex2base64 <hex_string>
+
+// or
+
+echo <some_hex_string> | ./hex2base64
 ```
 
 prints to stdout

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <string.h>
 
 static const char *base64chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -49,18 +50,48 @@ static void hexToBase64(char *hexstr) {
 		printBase64(hex, window % 3);
 }
 
-int main(int argc, char **argv) {
-	int bytes_read;
-	char buff[BUFSIZ];
+static char *readAll(int fd) {
+  char *buf;
+	char tmp[BUFSIZ] = {'\0'};
+	int iter = 1;
+	int bytes = 0;
 
+	if ((buf = (char *)calloc(sizeof(char *), BUFSIZ)) == NULL)
+		return NULL;
+
+	while (1) {
+		iter++;
+		bytes = read(fd, tmp, BUFSIZ - 1);
+		if (bytes <= 0) break;
+		else {
+			tmp[bytes] = '\0';
+			strcat(buf, tmp);
+			char *new_buf = realloc(buf, sizeof(char *) * (iter * BUFSIZ));
+			if (new_buf == NULL)
+				return NULL;
+			buf = new_buf;
+		}
+	}
+
+	buf[iter * BUFSIZ] = '\0';
+
+	return buf;
+}
+
+int main(int argc, char **argv) {
 	if (argc == 2) {
 		hexToBase64(argv[1]);
 		exit(EXIT_SUCCESS);
 		return 0;
 	}
 
-	while ((bytes_read = read(STDIN_FILENO, buff, BUFSIZ)) > 0)
-		hexToBase64(buff);
+	char *bytes;
+	if ((bytes = readAll(STDIN_FILENO)) == NULL) {
+		fprintf(stderr, "Failed to convert hex to base64");
+		exit(EXIT_FAILURE);
+	}
 
-	return 1;
+	free(bytes);
+
+	return 0;
 }
