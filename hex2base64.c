@@ -91,6 +91,7 @@ int main(int argc, char **argv) {
 		exit(EXIT_FAILURE);
 	}
 
+	hexToBase64(bytes);
 	free(bytes);
 
 	return 0;
